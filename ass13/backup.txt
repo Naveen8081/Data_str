@@ -1,0 +1,56 @@
+int Infix_Postfix_conversion(char *Infix_exp, char *Postfix_exp, Stack_t *stk)
+{
+    int j=0;
+	for(int i=0;Infix_exp[i]!='\0';i++)//for loop to iterate infix expression till last
+	{
+	    if(isalnum(Infix_exp[i]))//if character is alphabet or number
+	    {
+	        Postfix_exp[j++]=Infix_exp[i];//insert it into the postfix array
+	    }
+	    else//if operator or paranthesis
+	    {
+	        if(stk->top==-1)//if stack empty
+	        {
+	            push(stk,Infix_exp[i]);//push opearator into stack
+	        }
+	        else if(Infix_exp[i]=='(')//if character is a open parenthesis
+	        {
+	             push(stk,Infix_exp[i]);//dirctly push into stack
+	        }
+	        else if(Infix_exp[i] == ')')//if character is a closed parenthesis
+	        {
+	            while(!is_stack_empty(stk) && peek(stk)!='(')//run till '('
+	            {
+	                Postfix_exp[j++] = pop(stk);//pop  all the item from stack and store into postfix expression
+	            }
+	            pop(stk);//discard '('
+	        }
+	        else//Operator
+            {
+                while (!is_stack_empty(stk) && priority(peek(stk))>=priority(Infix_exp[i]))//check precedence 
+                {
+                    Postfix_exp[j++]=pop(stk);//pop item which has greater or equal precedence and store into postfix expression
+                }
+                push(stk, Infix_exp[i]);//push current character into the stack
+            }
+	    }
+	}
+	while(!is_stack_empty(stk))//if stack is not empty
+	{
+	    Postfix_exp[j++]=pop(stk);//pop all the items and store into postfix expression
+	}
+	 Postfix_exp[j]='\0';
+	 return 1;
+}
+
+int is_stack_empty(Stack_t *s)
+{
+    if(s->top==-1)//if stack empty
+    {
+        return 1;
+    }
+    else 
+    {
+        return 0; //not empty
+    }
+}
