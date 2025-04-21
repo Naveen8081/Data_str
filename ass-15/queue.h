@@ -4,15 +4,15 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-#define SUCCESS 0
-#define FAILURE -1
+#define SUCCESS 1
+#define FAILURE 0
 
 
 typedef struct Que
 {
     unsigned int capacity;
 	int front, rear, count;
-	int *Que;
+	int *item;
 }Queue_t;
 int create_queue(Queue_t *q, int);
 int enqueue(Queue_t *, int);

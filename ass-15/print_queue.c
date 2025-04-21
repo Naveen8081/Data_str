@@ -14,7 +14,7 @@ int print_queue(Queue_t q)
 	printf("Front -> ");
 	do
 	{
-		printf("%d ", q.Que[q.front]);
+		printf("%d ", q.item[q.front]);
 		q.front = (q.front + 1) % q.capacity;
 		/* Printing the queue till it will reaches end */	
 	}while (--(q.count));

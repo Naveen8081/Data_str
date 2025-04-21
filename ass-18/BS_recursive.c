@@ -1,18 +1,19 @@
 #include "main.h"
 
-data_t bubble(data_t *arr, int size )
+/* Function to search the element using binary search */
+data_t binarySearch_recursive(data_t *arr, data_t size, data_t key, data_t first, data_t last)
 {
-    int temp;
-    for(int i=0 ;i < size -1; i++)
+    int mid;
+    if(first<=last)
     {
-        for(int j=0; j < size -1 -i ;j++)
-        {
-            if(arr[j] > arr[j+1]) //comparing j index and j+1 index
-            {
-                temp=arr[j]; //swap the variables
-                arr[j]=arr[j+1];
-                arr[j+1]=temp;
-            }
-        }
+        mid=(first+last)/2;
+        if(key>arr[mid])
+            binarySearch_recursive(arr,size,key,mid+1,last);
+        else if(key<arr[mid])
+             binarySearch_recursive(arr,size,key,first,mid-1);
+        else if(key==arr[mid])
+            return mid;
     }
+    else
+        return DATA_NOT_FOUND;
 }

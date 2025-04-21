@@ -16,7 +16,7 @@ int merge_sort(int *array, int size)
     if(rsa == NULL) //validate the memory
         return FAILURE;
     for(int j = mid ; j <= size - 1; j++)  //run till mid to last index
-    {
+    {   
         rsa[j-mid]=array[j]; //update right side array specify index with array index
     }
     merge_sort(lsa,mid); //spiliting main array into left side array and right side array

@@ -16,7 +16,7 @@ int search_BST(Tree_t * root, int data)
         {
             temp = temp -> right; // temp move to right child
         }
-        else if( data = temp -> data)// data is matched
+        else if( data == temp -> data)// data is matched
         {
             return SUCCESS; // return success
         }
